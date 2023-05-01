@@ -6,17 +6,19 @@ cursor = conn.cursor()
 
 selected_file = "test"
 
-while not os.path.exists(r"C:\Users\alejon0910\PycharmProjects\playbackPrototype"+selected_file):
+while not os.path.exists(r"C:\Users\bigal\PycharmProjects\playbackPrototype"+selected_file):
     selected_file = input("File: ")
+
+selected_file = r"C:\Users\bigal\PycharmProjects\playbackPrototype"+selected_file
 
 
 insert_query = """
 INSERT INTO
     tracks(filename)
 VALUES
-    (selected_file);
+    (?);
 """
 
 
-cursor.execute(insert_query)
+cursor.execute(insert_query, (selected_file,))
 conn.commit()

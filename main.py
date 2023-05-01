@@ -18,8 +18,8 @@ class GUI(tk.Tk):
         self.cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='tracks';""")
         self.conn.commit()
 
-        for f in os.listdir(r"C:\Users\bigal\PycharmProjects\playbackPrototype\sounds"):
-            os.remove(os.path.join(r"C:\Users\bigal\PycharmProjects\playbackPrototype\sounds", f))
+        for f in os.listdir(r"sounds"):
+            os.remove(os.path.join(r"sounds", f))
 
         self.config(background="white")
         self.geometry("600x800")
@@ -44,9 +44,9 @@ class GUI(tk.Tk):
 
         self.file = filedialog.askopenfilename()
         self.basename = os.path.basename(self.file)
-        shutil.copy(self.file, r"C:\Users\bigal\PycharmProjects\playbackPrototype\sounds")
+        shutil.copy(self.file, r"sounds")
 
-        self.cursor.execute("""INSERT INTO tracks(filename) VALUES (?);""", (r"C:\Users\bigal\PycharmProjects\playbackPrototype\sounds"+(r"\""[0])+self.basename,))
+        self.cursor.execute("""INSERT INTO tracks(filename) VALUES (?);""", (r"sounds"+(r"\""[0])+self.basename,))
         self.conn.commit()
 
 
